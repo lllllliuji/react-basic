@@ -752,5 +752,18 @@ Redux
 
 Redux时React最常用的集中状态管理工具，类似于Vue中的Pinia（Vuex)，可以独立于框架运行。
 
+使用步骤：
+
+1. 定义一个reducer函数（根据当前想要的做的修改返回一个新的状态）
+2. 使用createStore方法传入reducer函数，生成一个store实例。
+3. 使用store的subscribe方法订阅数据的变化（数据一旦变化，可以得到通知）。
+4. 使用store实例的dispatch方法提交action对象触发数据变化。 
+5. 使用store实例的getState方法获取最新的状态数据更新到视图中。
 
 
+
+为了职责清晰，数据流向明确，Redux把整个数据修改的流程分为了三个核心概念。分别是state，action，reducer。
+
+1. state - 一个对象，存放着我们管理的数据状态
+2. action - 一个对象，用来描述逆向怎么修改数据
+3. reducer - 一个函数，根据aciton的描述生成一个新的state
