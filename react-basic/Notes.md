@@ -813,6 +813,21 @@ action传参。在reducers的同步修改方法中添加action对象参数，参
 
 
 
-
+redux devtools调试插件，在chrome里下载。
 
  
+
+点击一项，变更不同的className
+
+
+
+
+
+React Router前端路由。
+
+一个路径path对应一个组件component，当我们在浏览器中访问一个path的时候，path对应的组件会在页面中进行渲染。
+
+
+
+
+
