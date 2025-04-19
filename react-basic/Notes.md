@@ -799,6 +799,10 @@ store目录结构设计
 
 
 
+action传参。在reducers的同步修改方法中添加action对象参数，参数会默认传递到payload属性。
+
+
+
 
 
  
