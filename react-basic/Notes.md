@@ -829,5 +829,33 @@ React Router前端路由。
 
 
 
+创建路由开发环境
 
+1. 创建项目并安装所有依赖
+
+   ```shell
+   npx create-react-app react-router-pro
+   npm i
+   ```
+
+2. 安装最新的ReactRouter包
+
+   ```shell
+   npm i react-router-dom
+   ```
+
+3. 启动项目
+
+   ```shell
+   npm run start
+   ```
+
+
+
+抽象路由模块
+
+1. page目录。（Login， Article）
+
+2. router模块。（引入组件配置path-component)
+3. 应用入口渲染RouterProvider(注入router实例)
 
