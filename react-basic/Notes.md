@@ -767,3 +767,38 @@ Redux时React最常用的集中状态管理工具，类似于Vue中的Pinia（Vu
 1. state - 一个对象，存放着我们管理的数据状态
 2. action - 一个对象，用来描述逆向怎么修改数据
 3. reducer - 一个函数，根据aciton的描述生成一个新的state
+
+
+
+Redux与React
+
+安装两个插件
+
+1. Redux Toolkit.（工具，简化store配置，支持immer，支持可变状态修改，内置thunk更好的异步创建）
+2. react-redux。（连接redux和react的中间件）
+
+```shell
+npm i @reduxjs/toolkit react-redux
+```
+
+
+
+store目录结构设计
+
+1. 通常集中状态管理的部分都会单独创建一个单独的“store”目录。
+2. 应用通常会有很多个子store模块，所以创建一个“modules”目录，在内部编写业务分类的子store。
+3. store中的入口文件store .js的作用是组合modules中所有的子模块，并导出store。 
+
+
+
+1. 配置counterStore
+2. 配置根store并组合counterStore模块
+3. 注入store（react-redux）
+4. 使用store中的数据。（useSelector，作用是把store中的数据映射到组件中) 
+5. 修改store中的数据。（useDispatch，作用是生成提交action对象的dispatch函数)
+
+
+
+
+
+ 

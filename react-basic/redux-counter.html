@@ -2,7 +2,8 @@
 <span id="count">0</span>
 <button id="increment">+</button>
 
-<script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+<!--直接引用-->
+<script src="https://unpkg.com/redux@4.2.0/dist/redux.min.js"></script>
 
 <script>
   // 1. 定义reducer函数 
@@ -28,7 +29,7 @@
   store.subscribe(() => {
     console.log('state变化了', store.getState())
 
-    
+
     document.getElementById('count').innerText = store.getState().count   // 5. 通过store实例的getState方法获取最新状态更新到视图中
   })
 
