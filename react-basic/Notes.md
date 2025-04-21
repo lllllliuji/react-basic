@@ -859,3 +859,156 @@ React Router前端路由。
 2. router模块。（引入组件配置path-component)
 3. 应用入口渲染RouterProvider(注入router实例)
 
+  
+
+ 什么是路由导航
+
+路由系统中的多个路由之间需要进行路由跳转，并且在跳转的时候同时有可能需要传递参数进行通信。
+
+
+
+声明式导航
+
+声明式导航是指通过在模板中通过$<Link/>$组件描述出要跳转到哪里去，比如后台管理系统的左侧菜单通常使用这种方式进行.
+
+```html
+<Link to="/article">文章</Link>
+```
+
+语法说明：通过给组件的to属性指定要跳转到路由path，组件会被渲染为浏览器支持的a连接，如果需要传参直接通过字符串拼接的方式拼接参数即可。
+
+
+
+编程式导航
+
+编程式导航是指通过’userNavigate'钩子得到导航方法，然后通过调用方法以命令式的形式进行路由跳转，比如想在登录请求完毕之后跳转就可以选择这种方式，更加灵活。
+
+```html
+    const navigate = useNavigate();
+    return (
+        <div>
+            我是登录
+            <button onClick={() => navigate("/article")}>文章					</button>
+        </div>
+    );
+```
+
+语法说明：通过调用navigate方法传入地址path实现跳转。
+
+
+
+ReactRouter导航传参
+
+路由导航传参
+
+searchParams传参
+
+```javascript
+// 传递参数
+<button onClick={() => navigate("/article?id=101&name=newton")}>searchParams</button>
+
+// 接收参数
+const [params] = useSearchParams();
+return (
+    <div>
+    	我是文章-{params.get("id")}-{params.get("name")}
+    </div>
+);
+
+```
+
+
+
+params传参
+
+```javascript
+// 传递参数
+      <button onClick={() => navigate("/article/303/dijkstra")}>params</button>
+
+// 接收参数
+const Article = () => {
+  const params = useParams();
+  return (
+    <div>
+      我是文章-{params.id}-{params.name}
+    </div>
+  );
+};
+
+// 路由页面定义
+{
+    path: '/article/:id/:name',
+    element: <Article />
+}
+```
+
+
+
+ReactRouter - 嵌套路由配置
+
+在一级路由中又内嵌了其他路由，这种关系就叫做嵌套路由，嵌套至一级路由内的路由又称作二级路由。
+
+
+
+嵌套路由配置
+
+实现步骤：
+
+1. 使用children属性配置路由嵌套关系
+2. 使用<Outlet/>组件配置二级路由渲染位置
+
+```javascript
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <Layout />,
+        children: [
+            {
+                path: 'board',
+                element: <Board />
+            },
+            {
+                path: 'about',
+                element: <About />
+            }
+        ]
+    }
+)
+
+const Layout = () => {
+  return (
+    <div>
+      一级路由layout组件
+      <Link to="board">看板</Link>
+      <Link to="about">关于</Link>
+      <Outlet></Outlet>
+    </div>
+  );
+};
+```
+
+
+
+ReactRouter - 默认二级路由
+
+当访问的是一级路由时，默认的二级路由组件可以得到渲染，只需要在二级路由的位置去掉path，设置index属性为true。
+
+
+
+ReactRouter - 404路由配置
+
+404路由
+
+当浏览器输入url的路径在整个路由配置中都找不到对应的path，为了用户体验，可以使用404兜底组件进行渲染。
+
+实现步骤：
+
+1. 准备一个NotFount组件
+2. 在route.js路由表数组的末尾，以*号作为path配置路由。
+
+
+
+ReactRouter - 两种路由模式
+
+history模式，hash模式。
+
